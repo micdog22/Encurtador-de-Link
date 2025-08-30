@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>MicDog Shorty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./app.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <header class="container">
+    <h1>MicDog Shorty</h1>
+    <p>Encurte URLs, acompanhe cliques e exporte relatórios.</p>
+  </header>
+
+  <section class="container grid-3 cards" id="cards">
+    <div class="card">
+      <div class="muted">Links</div>
+      <div id="totalLinks" class="stat">0</div>
+    </div>
+    <div class="card">
+      <div class="muted">Cliques</div>
+      <div id="totalClicks" class="stat">0</div>
+    </div>
+    <div class="card">
+      <div class="muted">Top Code</div>
+      <div id="topCode" class="stat">—</div>
+    </div>
+  </section>
+
+  <section class="container filters">
+    <div class="row">
+      <label>Buscar
+        <input type="text" id="q" placeholder="URL, code, título..." />
+      </label>
+      <button id="btnFilter">Filtrar</button>
+      <button id="btnClear">Limpar</button>
+      <button id="btnExportLinks">Exportar Links</button>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>Novo link curto</h2>
+    <form id="formNew" class="grid-6">
+      <input type="url" name="url" placeholder="https://exemplo.com/pagina" required />
+      <input type="text" name="title" placeholder="Título (opcional)" />
+      <input type="text" name="code" placeholder="Alias (opcional, ex: promo)" />
+      <div style="grid-column: span 2;"></div>
+      <button type="submit">Criar</button>
+    </form>
+  </section>
+
+  <section class="container">
+    <canvas id="chart" height="120"></canvas>
+  </section>
+
+  <section class="container">
+    <h2>Links</h2>
+    <div class="table-wrap">
+      <table class="table" id="tbl">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>URL</th>
+            <th>Título</th>
+            <th class="num">Cliques</th>
+            <th class="actions">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <template id="row">
+    <tr>
+      <td data-k="code"></td>
+      <td data-k="url"></td>
+      <td data-k="title"></td>
+      <td data-k="clicks_count" class="num"></td>
+      <td class="actions">
+        <button data-act="copy">Copiar</button>
+        <button data-act="stats">Stats</button>
+        <button data-act="edit">Editar</button>
+        <button data-act="del" class="danger">Excluir</button>
+      </td>
+    </tr>
+  </template>
+
+  <dialog id="dlgEdit">
+    <form method="dialog" id="formEdit" class="grid-6">
+      <h3>Editar link</h3>
+      <input type="hidden" name="id" />
+      <input type="url" name="url" placeholder="URL" required />
+      <input type="text" name="title" placeholder="Título (opcional)" />
+      <input type="text" name="code" placeholder="Alias (opcional)" />
+      <div style="grid-column: span 2;"></div>
+      <menu>
+        <button type="submit">Salvar</button>
+        <button type="button" id="btnCancelEdit">Cancelar</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="dlgStats">
+    <div class="stats-wrap">
+      <h3 id="stTitle">Estatísticas</h3>
+      <p id="stInfo" class="muted"></p>
+      <div class="table-wrap" style="margin-top:10px;">
+        <table class="table" id="tblRecent">
+          <thead>
+            <tr><th>Data/Hora</th><th>IP</th><th>Ref</th><th>User-Agent</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="container muted">
+    <p>Projeto em PHP + HTML/JS. Banco SQLite. Sem dependências externas.</p>
+  </footer>
+</body>
+</html>

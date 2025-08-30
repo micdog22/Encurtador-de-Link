@@ -1,0 +1,52 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #10151c;
+  --muted: #9aa4b2;
+  --text: #e7eef7;
+  --primary: #2b7cff;
+  --danger: #d64545;
+  --border: #1a2230;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 18px; }
+h1, h2, h3 { margin: 0 0 10px; }
+p { margin: 6px 0 0; color: var(--muted); }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.cards .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.muted { color: var(--muted); font-size: 14px; }
+.stat { font-size: 26px; font-weight: 700; }
+
+.filters .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+.filters label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+input[type="text"], input[type="date"], input[type="url"], input[type="number"] {
+  background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+}
+button {
+  background: var(--primary); color: #fff; border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer;
+}
+button:hover { filter: brightness(1.1); }
+button.danger { background: var(--danger); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+.table { width: 100%; border-collapse: collapse; background: var(--panel); }
+.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.table th { background: #0f1621; position: sticky; top: 0; z-index: 1; }
+.table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.table .actions { width: 260px; }
+
+dialog {
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); color: var(--text); padding: 18px; width: min(760px, 95vw);
+}
+dialog::backdrop { background: rgba(0,0,0,.6); }
+menu { display: flex; gap: 10px; padding: 0; margin: 0; }
+
+@media (max-width: 900px){
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-6 { grid-template-columns: 1fr 1fr; }
+}
