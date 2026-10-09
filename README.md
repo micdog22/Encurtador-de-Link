@@ -39,15 +39,15 @@ Observação: em produção você pode configurar o servidor (Nginx/Apache) para
 Todas as requisições não-GET precisam do header `X-CSRF-Token` obtido em `GET /api/csrf`.
 
 - `GET /api/csrf`
-- `GET /api/links?q=...` — lista links
-- `POST /api/links` — cria link `{url, title?, code?}`
-- `PUT /api/links/{id}` — atualiza
-- `DELETE /api/links/{id}` — remove
-- `GET /api/stats` — estatísticas gerais
-- `GET /api/stats/{id}` — estatísticas por link
-- `GET /api/export/links` — CSV de links
-- `GET /api/export/clicks?link_id=...` — CSV de cliques
-- `GET /api/go/{code}` — redireciona e registra clique
+- `GET /api/links?q=...`: lista links
+- `POST /api/links`: cria link `{url, title?, code?}`
+- `PUT /api/links/{id}`: atualiza
+- `DELETE /api/links/{id}`: remove
+- `GET /api/stats`: estatísticas gerais
+- `GET /api/stats/{id}`: estatísticas por link
+- `GET /api/export/links`: CSV de links
+- `GET /api/export/clicks?link_id=...`: CSV de cliques
+- `GET /api/go/{code}`: redireciona e registra clique
 
 ## Banco de dados
 Criado automaticamente no primeiro uso:

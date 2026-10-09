@@ -18,7 +18,7 @@ async function loadStats() {
   const j = await r.json();
   $('#totalLinks').textContent = fmtInt(j.totalLinks);
   $('#totalClicks').textContent = fmtInt(j.totalClicks);
-  $('#topCode').textContent = j.top?.[0]?.code ?? '—';
+  $('#topCode').textContent = j.top?.[0]?.code ?? '-';
 
   const labels = j.series.map(s => s.day);
   const data = j.series.map(s => Number(s.clicks));
